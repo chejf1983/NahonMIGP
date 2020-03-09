@@ -3,23 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/migp/reg/FMEG.java</file>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/migp/mem/SRA.java</file>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/migp/node/MIGPCodec.java</file>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/migp/impl/MIGPBoot.java</file>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/migp/mem/VPA.java</file>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/migp/node/MIGPNode.java</file>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/migp/impl/MIGPEia.java</file>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/migp/mem/EIA.java</file>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/pro/data/EquipmentInfo.java</file>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/migp/reg/MEG.java</file>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/migp/reg/BMEG.java</file>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/migp/mem/MEM.java</file>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/migp/reg/SMEG.java</file>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/migp/node/MIGPPacket.java</file>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/migp/reg/DMEG.java</file>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/migp/reg/IMEG.java</file>
-            <file>file:/D:/Git/code/java_app/singlebranch6.0/PlatForm/NahonDrv/dev_migp_base/src/base/migp/node/MIGP_CmdSend.java</file>
+            <file>file:/D:/GitHub/singlebranch/PlatForm/NahonDrv/dev_migp_base/src/base/migp/reg/IMEG.java</file>
         </group>
     </open-files>
 </project-private>
