@@ -48,7 +48,6 @@ public class MIGPNode {
     private static final int TMP_BUFFER_SIZE = 20480;
     private static final int MAX_RCBUFFER_SIZE = 102400;
     private static final int MAXTIMEOUT = 100;
-    private boolean iscanceled = false;
 
     /**
      *
@@ -98,73 +97,7 @@ public class MIGPNode {
             this.nodelocker.unlock();
         }
     }
-//
-//    public synchronized MIGPPacket ReceiveMIGPPacket(int timeout) throws Exception{
-//        this.nodelocker.lock();
-//        MIGPPacket packet = null;
-//
-//        try {
-//            int timeindex = 0; //时间计数器
-//            int rclen = 0;
-////            this.iscanceled = false; //是否取消
-////            int lag = 0;
-//            int len = 0;
-//            byte[] tmpdata = new byte[TMP_BUFFER_SIZE];
-//
-//            while (!iscanceled) {
-//                //receive data
-//                len = physicalInterface.ReceiveData(tmpdata, MAXTIMEOUT);
-//
-//                if (len > 0) {
-//                    //move tmp data to recevei buffer pool
-//                    System.arraycopy(tmpdata, 0, rcbuffer, rclen, len);
-//                    rclen += len;
-//                    //寻找有效包
-//                    packet = MIGPCodec.DecodeBuffer(rcbuffer);
-//                    //找到包，跳出循环，返回有效包
-//                    if (packet != null) {
-//                        break;
-//                    }
-//                } else {
-//                    //计时器增加
-//                    timeindex += MAXTIMEOUT;
-//                    if (timeindex >= timeout) {
-//                        //超时，返回空包
-//                        //System.out.println("超时" + timeout);
-//                        return null;
-//                    } 
-//                }                
-//            }
-//
-////            if (this.iscanceled) {
-////                // this.nodelocker.unlock();
-////                throw new MCancelException("Canceled");
-////            }
-//
-//            //no packet found, means timeout
-//            return packet;
-//        } finally {
-//            this.nodelocker.unlock();
-//        }
-//    }
-
-//    public boolean IsCanceled() {
-//        return this.iscanceled;
-//    }
-//    
-//    public void Cancel() {
-//        this.iscanceled = true;
-//
-//        while (this.nodelocker.isLocked()) {
-//            //只要nodelock还锁住，表示node还在接数据，将canceled设置成true;
-//            this.iscanceled = true;
-//            try {
-//                TimeUnit.MILLISECONDS.sleep(10);
-//            } catch (InterruptedException ex) {
-//
-//            }
-//        }
-//    }
+    
     private boolean checkAddr(MIGPPacket pkt) {
         if (pkt == null) {
             return false;

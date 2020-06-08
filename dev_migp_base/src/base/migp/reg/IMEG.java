@@ -102,5 +102,4 @@ public class IMEG extends MEG<Integer> {
         return value.compareTo(this.value) == 0;
     }
     // </editor-fold>  
-
 }

@@ -200,6 +200,8 @@ public class MIGP_CmdSend extends MIGPNode {
 //    public synchronized byte[] GetMEM(MEM MEM_ID, int MEM_Length, int timeout) throws Exception, TimeoutException {
 //        return this.GetMEM(MEM_ID, MEM_Length, 3, timeout);
 //    }
+    
+    //|Head(4)|DstDev(1)|LocalDev(1)|cmd & 0x80(1)|data(x)|CRC(1)|Tail(4)|
     public synchronized byte[] GetMEM(MEM MEM_ID, int MEM_Length, int retry, int timeout) throws Exception, TimeoutException {
         byte[] sbuffer = new byte[8];
         System.arraycopy(NahonConvert.IntegerToByteArray(MEM_ID.addr), 0, sbuffer, 0, 4);

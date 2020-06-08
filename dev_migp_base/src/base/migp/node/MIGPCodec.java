@@ -5,6 +5,9 @@
  */
 package base.migp.node;
 
+import base.migp.mem.NVPA;
+import base.migp.reg.FMEG;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -207,9 +210,12 @@ public class MIGPCodec {
         }
     }
 
-    public static void main(String... args) {
+    public static void main(String... args) throws Exception {
+        FMEG testa = new FMEG(new NVPA(0,4),"");
+        testa.SetValue(Float.valueOf("0.0"));
+        byte[] aaa = testa.ToBytes();
 //        String test = "55 AA 7B 7B F0 02 E0 00 00 00 00 00 00 00 00 00 00 BD B8 3C F3 42 18 F4 76 F7 DF FD DF FF 00 00 00 00 00 00 00 00 00 00 00 40 55 AA 7D 7D";
-        String test = "00 00 00 00 00 00 00 00 00 00 BD B8 3C F3 42 18 F4 76 F7 DF FD DF FF 00 00 00 00 00 00 00 00 00 00 00";
+        String test = "55 AA 7B 7B F0 00 E0 00 00 00 00 00 00 00 00 00 00 10 43 52 DB 00 01 00 01 1E 39 D9 55 AA 7D 7D";
         String[] inputs = test.split(" ");
         byte[] data = new byte[inputs.length];
         byte ret = 0;
@@ -219,7 +225,9 @@ public class MIGPCodec {
             ret += data[i];
         }
 
-        System.out.println("LRC = " + String.format("%x", (byte) ret));
+        MIGPPacket DecodeBuffer = MIGPCodec.DecodeBuffer(data, data.length);
+
+        System.out.println(Math.log10(20/2));
     }
 
 }
