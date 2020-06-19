@@ -36,6 +36,13 @@ public class MIGP_CmdSend extends MIGPNode {
 
     private int maxbufferlen = 65535;
 
+    public void SetMaxBufferLen(int len){
+        this.maxbufferlen = len;
+    }
+    
+    public int GetMaxBufferLen(){
+        return this.maxbufferlen;
+    }
     // <editor-fold defaultstate="collapsed" desc="MIGP Common CMD Key">
     public static final byte GET_DEV_STATE_CMD = 0x03;
     public static final byte SET_DEVNUM = 0x05;
@@ -222,7 +229,7 @@ public class MIGP_CmdSend extends MIGPNode {
             throw new Exception("返回数据异常");
         }
     }
-
+    
     //批量读寄存器
     public void ReadMEG(int retry_time, int timeout, MEG... reg) throws Exception {
         MEG min_reg = reg[0];
@@ -237,6 +244,7 @@ public class MIGP_CmdSend extends MIGPNode {
                 max_reg = treg;
             }
         }
+//        int mem_start = 
         //读取最小最大寄存器对应的内容
         byte[] memory = this.GetMEM(min_reg.GetMEM(), max_reg.GetMEM().addr + max_reg.GetMEM().length - min_reg.GetMEM().addr, retry_time, timeout);
         for (MEG treg : reg) {
