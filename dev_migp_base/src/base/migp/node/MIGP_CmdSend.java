@@ -72,6 +72,7 @@ public class MIGP_CmdSend extends MIGPNode {
     // </editor-fold> 
 
     // </editor-fold> 
+    
     // <editor-fold defaultstate="collapsed" desc="migp data send interface"> 
     /**
      * check packet cmd
@@ -244,7 +245,6 @@ public class MIGP_CmdSend extends MIGPNode {
                 max_reg = treg;
             }
         }
-//        int mem_start = 
         //读取最小最大寄存器对应的内容
         byte[] memory = this.GetMEM(min_reg.GetMEM(), max_reg.GetMEM().addr + max_reg.GetMEM().length - min_reg.GetMEM().addr, retry_time, timeout);
         for (MEG treg : reg) {

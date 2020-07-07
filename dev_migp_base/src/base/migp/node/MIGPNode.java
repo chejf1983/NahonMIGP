@@ -44,10 +44,11 @@ public class MIGPNode {
     // </editor-fold> 
 
     // <editor-fold defaultstate="collapsed" desc="migp packet process"> 
-    private final byte[] rcbuffer = new byte[MAX_RCBUFFER_SIZE];
-    private static final int TMP_BUFFER_SIZE = 20480;
-    private static final int MAX_RCBUFFER_SIZE = 102400;
-    private static final int MAXTIMEOUT = 100;
+    private byte[] rcbuffer = new byte[MAX_RCBUFFER_SIZE];
+    private byte[] tmpdata = new byte[TMP_BUFFER_SIZE];
+    private static final int TMP_BUFFER_SIZE = 2078;//2048+head < 2078
+    private static final int MAX_RCBUFFER_SIZE = 5000;
+    private static final int MAXTIMEOUT = 50;
 
     /**
      *
@@ -79,7 +80,6 @@ public class MIGPNode {
 
         try {
             int rc_len = 0;
-            byte[] tmpdata = new byte[TMP_BUFFER_SIZE];
             long startTime = System.currentTimeMillis();
             while (System.currentTimeMillis() - startTime < timeout) {
                 //receive data
@@ -97,7 +97,7 @@ public class MIGPNode {
             this.nodelocker.unlock();
         }
     }
-    
+
     private boolean checkAddr(MIGPPacket pkt) {
         if (pkt == null) {
             return false;
