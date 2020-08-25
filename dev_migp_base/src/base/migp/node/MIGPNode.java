@@ -5,7 +5,7 @@
 package base.migp.node;
 
 import java.util.concurrent.locks.ReentrantLock;
-import base.pro.absractio.AbstractIO;
+import nahon.comm.io.AbstractIO;
 
 /**
  * MIGP IO one migp io bind one real io one real io can be bind to serveral migp

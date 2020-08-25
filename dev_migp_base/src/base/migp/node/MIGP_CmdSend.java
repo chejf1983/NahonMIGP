@@ -8,8 +8,8 @@ package base.migp.node;
 import base.migp.mem.MEM;
 import base.migp.reg.MEG;
 import base.pro.convert.NahonConvert;
-import base.pro.absractio.AbstractIO;
 import java.util.concurrent.TimeoutException;
+import nahon.comm.io.AbstractIO;
 
 /**
  *

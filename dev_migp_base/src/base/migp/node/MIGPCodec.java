@@ -6,7 +6,10 @@
 package base.migp.node;
 
 import base.migp.mem.NVPA;
+import base.migp.mem.SRA;
 import base.migp.reg.FMEG;
+import base.migp.reg.IMEG;
+import base.pro.convert.NahonConvert;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -211,11 +214,11 @@ public class MIGPCodec {
     }
 
     public static void main(String... args) throws Exception {
-        FMEG testa = new FMEG(new NVPA(0,4),"");
+        FMEG testa = new FMEG(new NVPA(0, 4), "");
         testa.SetValue(Float.valueOf("0.0"));
         byte[] aaa = testa.ToBytes();
 //        String test = "55 AA 7B 7B F0 02 E0 00 00 00 00 00 00 00 00 00 00 BD B8 3C F3 42 18 F4 76 F7 DF FD DF FF 00 00 00 00 00 00 00 00 00 00 00 40 55 AA 7D 7D";
-        String test = "55 AA 7B 7B F0 00 E0 00 00 00 00 00 00 00 00 00 00 10 43 52 DB 00 01 00 01 1E 39 D9 55 AA 7D 7D";
+        String test = "55 AA 7B 7B F0 0A F0 00 00 00 0C 00 68 C7 EE 41 F1 49 7C 20 55 AA 7D 7D";
         String[] inputs = test.split(" ");
         byte[] data = new byte[inputs.length];
         byte ret = 0;
@@ -226,8 +229,11 @@ public class MIGPCodec {
         }
 
         MIGPPacket DecodeBuffer = MIGPCodec.DecodeBuffer(data, data.length);
-
-        System.out.println(Math.log10(20/2));
+        System.out.println();
+        System.out.println(NahonConvert.ByteArrayToUShort(new byte[]{(byte) 0xC7, (byte) 0xEE}, 0));
+        IMEG treg = new IMEG(new SRA(0x0C, 2), "原始光强信号(高电平)");
+        treg.LoadBytes(new byte[]{(byte) 0xC7, (byte) 0xEE}, 0);
+        System.out.println(treg.GetValue());
     }
 
 }
