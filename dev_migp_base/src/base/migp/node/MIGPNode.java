@@ -48,7 +48,7 @@ public class MIGPNode {
     private byte[] tmpdata = new byte[TMP_BUFFER_SIZE];
     private static final int TMP_BUFFER_SIZE = 2078;//2048+head < 2078
     private static final int MAX_RCBUFFER_SIZE = 5000;
-    private static final int MAXTIMEOUT = 50;
+//    private static final int MAXTIMEOUT = 50;
 
     /**
      *

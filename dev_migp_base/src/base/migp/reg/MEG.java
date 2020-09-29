@@ -39,6 +39,10 @@ public abstract class MEG<T> {
     //加载byte值
     public abstract void LoadBytes(byte[] mem, int pos) throws Exception;
 
+    public void setInfo(String info) {
+        this.info = info;
+    }
+    
     //获取描述信息
     @Override
     public String toString() {

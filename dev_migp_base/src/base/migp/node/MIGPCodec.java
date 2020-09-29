@@ -5,6 +5,7 @@
  */
 package base.migp.node;
 
+import base.migp.mem.EIA;
 import base.migp.mem.NVPA;
 import base.migp.mem.SRA;
 import base.migp.reg.FMEG;
@@ -215,6 +216,8 @@ public class MIGPCodec {
 
     public static void main(String... args) throws Exception {
         FMEG testa = new FMEG(new NVPA(0, 4), "");
+        EIA eia = new EIA(0x00, 0x10);
+//        MIGPCodec.EncodeBuffer(new MIGPPacket(0x00, 0xFE, ))
         testa.SetValue(Float.valueOf("0.0"));
         byte[] aaa = testa.ToBytes();
 //        String test = "55 AA 7B 7B F0 02 E0 00 00 00 00 00 00 00 00 00 00 BD B8 3C F3 42 18 F4 76 F7 DF FD DF FF 00 00 00 00 00 00 00 00 00 00 00 40 55 AA 7D 7D";

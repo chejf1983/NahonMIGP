@@ -29,6 +29,7 @@ public class MIGPPacket {
         this.data = rcPkt.data;
     }
 
+
     @Override
     public String toString() {
         String ret = "dstDevNum:" + dstAddress;
