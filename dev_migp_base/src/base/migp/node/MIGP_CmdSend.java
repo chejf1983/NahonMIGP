@@ -36,11 +36,11 @@ public class MIGP_CmdSend extends MIGPNode {
 
     private int maxbufferlen = 65535;
 
-    public void SetMaxBufferLen(int len){
+    public void SetMaxBufferLen(int len) {
         this.maxbufferlen = len;
     }
-    
-    public int GetMaxBufferLen(){
+
+    public int GetMaxBufferLen() {
         return this.maxbufferlen;
     }
     // <editor-fold defaultstate="collapsed" desc="MIGP Common CMD Key">
@@ -72,7 +72,6 @@ public class MIGP_CmdSend extends MIGPNode {
     // </editor-fold> 
 
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="migp data send interface"> 
     /**
      * check packet cmd
@@ -188,6 +187,8 @@ public class MIGP_CmdSend extends MIGPNode {
         return true;
     }
 
+    //|Head(55 AA 7B 7B)|DstDev(1)|LocalDev(1)|CMD|地址(4)|长度(4)|data(x)|CRC(1)|Tail(55 AA 7D 7D)|
+    //|Head(55 AA 7B 7B)|DstDev(1)|LocalDev(1)|CMD & 0x80(1)|长度(4)|66|CRC(1)|Tail(55 AA 7D 7D)|
     private boolean SetSingelMemory(byte MEM_ID, int MEM_Addr, int MEM_Length, byte[] data, int retry, int timeout) throws TimeoutException, Exception {
         byte[] sbuffer = new byte[8 + MEM_Length];
         System.arraycopy(NahonConvert.IntegerToByteArray(MEM_Addr), 0, sbuffer, 0, 4);
@@ -207,18 +208,19 @@ public class MIGP_CmdSend extends MIGPNode {
 //    public synchronized byte[] GetMEM(MEM MEM_ID, int MEM_Length, int timeout) throws Exception, TimeoutException {
 //        return this.GetMEM(MEM_ID, MEM_Length, 3, timeout);
 //    }
-    //|Head(4)|DstDev(1)|LocalDev(1)|cmd & 0x80(1)|data(x)|CRC(1)|Tail(4)|
+    //|Head(55 AA 7B 7B)|DstDev(1)|LocalDev(1)|CMD|地址(4)|长度(4)|CRC(1)|Tail(55 AA 7D 7D)|
+    //|Head(55 AA 7B 7B)|DstDev(1)|LocalDev(1)|CMD & 0x80(1)|长度(4)|data(x)|CRC(1)|Tail(55 AA 7D 7D)|
     public synchronized byte[] GetMEM(MEM MEM_ID, int MEM_Length, int retry, int timeout) throws Exception, TimeoutException {
         byte[] sbuffer = new byte[8];
         System.arraycopy(NahonConvert.IntegerToByteArray(MEM_ID.addr), 0, sbuffer, 0, 4);
         System.arraycopy(NahonConvert.IntegerToByteArray(MEM_Length), 0, sbuffer, 4, 4);
         byte[] data = this.SendRPC(MEM_ID.getMEM, sbuffer, retry, timeout);
-        
+
         //先进行长度检查
         if (data.length != MEM_Length + 4) {
             throw new Exception("返回数据异常");
         }
-        
+
         int memaddr = NahonConvert.ByteArrayToInteger(data, 0);
 
         //check memaddr and length
@@ -230,7 +232,7 @@ public class MIGP_CmdSend extends MIGPNode {
             throw new Exception("返回数据异常");
         }
     }
-    
+
     //批量读寄存器
     public void ReadMEG(int retry_time, int timeout, MEG... reg) throws Exception {
         MEG min_reg = reg[0];
