@@ -8,6 +8,7 @@ package base.migp.node;
 import base.migp.mem.MEM;
 import base.migp.reg.MEG;
 import base.pro.convert.NahonConvert;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import nahon.comm.io.AbstractIO;
 
@@ -16,6 +17,7 @@ import nahon.comm.io.AbstractIO;
  * @author jiche
  */
 public class MIGP_CmdSend extends MIGPNode {
+    private int timelag = 20;
 
     public MIGP_CmdSend(AbstractIO physicalInterface, byte localAddr, byte dstAddr) {
         super(physicalInterface, localAddr);
@@ -23,6 +25,14 @@ public class MIGP_CmdSend extends MIGPNode {
         this.maxbufferlen = physicalInterface.MaxBuffersize();
     }
 
+    public int getTimelag() {
+        return timelag;
+    }
+
+    public void setTimelag(int timelag) {
+        this.timelag = timelag;
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="MIGP Information">
     private byte dstAddr;
 
@@ -72,6 +82,7 @@ public class MIGP_CmdSend extends MIGPNode {
     // </editor-fold> 
 
     // </editor-fold> 
+    
     // <editor-fold defaultstate="collapsed" desc="migp data send interface"> 
     /**
      * check packet cmd
@@ -115,6 +126,9 @@ public class MIGP_CmdSend extends MIGPNode {
     }
 
     public synchronized void SendCMD(byte cmd, byte[] data) throws Exception {
+        if(this.timelag > 0){
+            TimeUnit.MILLISECONDS.sleep(this.timelag);
+        }
         this.SendMIGPPacket(dstAddr, cmd, data);
     }
 
