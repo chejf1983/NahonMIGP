@@ -17,6 +17,7 @@ import nahon.comm.io.AbstractIO;
  * @author jiche
  */
 public class MIGP_CmdSend extends MIGPNode {
+
     private int timelag = 20;
 
     public MIGP_CmdSend(AbstractIO physicalInterface, byte localAddr, byte dstAddr) {
@@ -32,7 +33,7 @@ public class MIGP_CmdSend extends MIGPNode {
     public void setTimelag(int timelag) {
         this.timelag = timelag;
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="MIGP Information">
     private byte dstAddr;
 
@@ -82,7 +83,6 @@ public class MIGP_CmdSend extends MIGPNode {
     // </editor-fold> 
 
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="migp data send interface"> 
     /**
      * check packet cmd
@@ -126,7 +126,7 @@ public class MIGP_CmdSend extends MIGPNode {
     }
 
     public synchronized void SendCMD(byte cmd, byte[] data) throws Exception {
-        if(this.timelag > 0){
+        if (this.timelag > 0) {
             TimeUnit.MILLISECONDS.sleep(this.timelag);
         }
         this.SendMIGPPacket(dstAddr, cmd, data);
@@ -289,7 +289,9 @@ public class MIGP_CmdSend extends MIGPNode {
             //复制出内存
             System.arraycopy(treg.ToBytes(), 0, memory, (treg.GetMEM().addr - min_reg.GetMEM().addr), treg.GetMEM().length);
         }
-        this.SetMEM(min_reg.GetMEM(), memory.length, memory, retry_time, timeout);
+        if (!this.SetMEM(min_reg.GetMEM(), memory.length, memory, retry_time, timeout)) {
+            throw new Exception("设备拒绝操作");
+        }
     }
     // </editor-fold> 
 }
